@@ -193,7 +193,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -207,7 +207,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -231,7 +231,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1447,7 +1447,60 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Flag_0: 1805158079502305607
+      Flag_1: -477789389410734736
+      Flag_10: -1076038790263142589
+      Flag_11: 7123730508648843983
+      Flag_12: 3212425294469108172
+      Flag_13: 2279773086328250220
+      Flag_14: -7425622752597321086
+      Flag_15: 6755553331240962130
+      Flag_16: 5885478727667930714
+      Flag_17: -8283176450551000680
+      Flag_18: -8263232976418961589
+      Flag_19: 8125518885306689150
+      Flag_2: -8119871676797884261
+      Flag_20: 8460961520601177422
+      Flag_21: -3653387924263493056
+      Flag_22: 4194533151055478152
+      Flag_23: 6503215012133042380
+      Flag_24: 9141306938959004118
+      Flag_25: -2995696645667906970
+      Flag_26: -7160465731423460985
+      Flag_27: 8239693308303197734
+      Flag_28: 1222903912665764103
+      Flag_29: 2905249457249174301
+      Flag_3: 5006722515616286978
+      Flag_30: 3484269767358682980
+      Flag_31: -6705813076598904554
+      Flag_32: -5890409378073842762
+      Flag_33: -4824007099505590598
+      Flag_34: -3220985003931206887
+      Flag_35: 4441422704755559474
+      Flag_36: -8244596107972510728
+      Flag_37: -8228400149466540623
+      Flag_38: 8259059857457523101
+      Flag_39: -5799514320860313014
+      Flag_4: -1620801062248390355
+      Flag_40: 1725996350947030939
+      Flag_41: -4198747408879234895
+      Flag_42: 3708608404476395790
+      Flag_43: -7767159160306045756
+      Flag_44: -5012217324501833665
+      Flag_45: 7638534035785937766
+      Flag_46: 4552855638700176753
+      Flag_47: -736787507445312375
+      Flag_48: 6936021889838842934
+      Flag_49: 7430251200335149125
+      Flag_5: -6821687374815711783
+      Flag_50: -8003162231007123562
+      Flag_51: 8511997353783915635
+      Flag_52: -3691727385027748278
+      Flag_6: 9203530336585976052
+      Flag_7: -5498009112885732322
+      Flag_8: 7483883601491041384
+      Flag_9: -4077365112243052297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
