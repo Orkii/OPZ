@@ -276,6 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407794647946437573}
   - component: {fileID: 3683857138260889671}
+  - component: {fileID: 4625996583673211705}
   - component: {fileID: 3305123471703682240}
   - component: {fileID: 8019620724418585937}
   - component: {fileID: 7002815209934337863}
@@ -322,6 +323,18 @@ MonoBehaviour:
   movementInput: {fileID: -3848550724406561943, guid: a642c6032ea9bef4c9147aa47ff4d82f, type: 3}
   shootInput: {fileID: -2549191685408794620, guid: a642c6032ea9bef4c9147aa47ff4d82f, type: 3}
   inventoryInput: {fileID: 4809451609693096593, guid: a642c6032ea9bef4c9147aa47ff4d82f, type: 3}
+--- !u!114 &4625996583673211705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612643686295653135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559b77e04c65b9b4b83a4c43ee1156a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3305123471703682240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: a642c6032ea9bef4c9147aa47ff4d82f, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -415,7 +428,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &5041338164403717251
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class Player : Creature {
     public float maxSpeed = 1;
     public float acceleration = 1;
     public float deceleration = 1;
+    protected Inventory inventory;
 
     [SerializeField]
     protected InputActionReference movementInput;
@@ -22,12 +23,12 @@ public class Player : Creature {
     [SerializeField]
     protected InputActionReference inventoryInput;
 
-    protected Inventory inventory = new Inventory();
 
     Vector2 moveV;
     
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        inventory = GetComponent<Inventory>();
         inventoryInput.action.performed += openInventory;
         movementInput.action.Enable();
         shootInput.action.Enable();
@@ -56,25 +57,23 @@ public class Player : Creature {
     }
     protected void move() {
         moveV = movementInput.action.ReadValue<Vector2>();
-        Debug.Log("move = " + moveV);
+        //Debug.Log("move = " + moveV);
         //characterController.Move(move * speed * Time.deltaTime);
         rb.linearVelocity = moveV * speed;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log("Touch = " + collision.name);
+        if (isItemInWorld(collision)) return;
+    }
+    protected bool isItemInWorld(Collider2D colider) {
+        ItemInWorld item = colider.gameObject.GetComponent<ItemInWorld>();
+        if (item == null) return false;
+        inventory.tryPutItem(item);
+        
+        return true;
+    }
+
 }
 
 
-public class Inventory : ISaveLoadable {
-    public List<ItemInInventory> items;
-    int capacity = 5;
-    public object load(XElement xml) {
-        throw new System.NotImplementedException();
-    }
-
-    public XElement save() {
-        XElement root = new XElement("inventory");
-        foreach (ISaveLoadable ob in items) {
-            root.Add(ob.save());
-        }
-        return root;
-    }
-}

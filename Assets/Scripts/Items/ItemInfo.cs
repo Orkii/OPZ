@@ -4,15 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-[System.Serializable]
-public class ItemInfo : ISaveLoadable {
+//[System.Serializable]
+[CreateAssetMenu(fileName = "itemInfoData", menuName = "custom/itemInfoData")]
+public class ItemInfo : ScriptableObject, ISaveLoadable {
 
     [SerializeField]
     public string itemName;
     [SerializeField]
     public string itemIconPath;
+    [SerializeField]
+    protected Sprite image_;
+
+
+    public Sprite image   // property
+    {
+        get { 
+            if (image_ == null) image_ = Resources.Load<Sprite>(itemIconPath);
+            return image_;
+        }
+    }
+
     public object load(XElement xml) {
         throw new System.NotImplementedException();
+
+
     }
 
     public XElement save() {
@@ -25,15 +40,3 @@ public class ItemInfo : ISaveLoadable {
 
 
 
-public class ItemInInventory : MonoBehaviour, ISaveLoadable {
-
-    protected ItemInfo itemInfo;
-
-    public object load(XElement xml) {
-        throw new System.NotImplementedException();
-    }
-
-    public XElement save() {
-        throw new System.NotImplementedException();
-    }
-}
