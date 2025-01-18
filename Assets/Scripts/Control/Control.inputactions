@@ -123,6 +123,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "InventoryInput",
+            "id": "33a2e237-f40d-4581-8d2a-30038ddda6a1",
+            "actions": [
+                {
+                    "name": "Close inventory",
+                    "type": "Button",
+                    "id": "1a730843-fc89-4895-9633-8fe0f4d35c14",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Delete",
+                    "type": "Button",
+                    "id": "ad282e1a-d97e-4af7-9cad-351f014f4171",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3bc6009-8fa7-4c4f-b488-2291f17e0df4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6688daa-cc21-4379-879f-5ec389aa244e",
+                    "path": "<Keyboard>/delete",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Delete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

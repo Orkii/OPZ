@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -7,10 +8,83 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour, ISaveLoadable {
     public List<ItemInInventory> items = new List<ItemInInventory>();
-    int capacity = 5;
-    
-    public Inventory() { 
+    public delegate void InventoryHandler(List<ItemInInventory> list);
+    public event InventoryHandler onChange;
+    public event InventoryHandler onOpen;
+    public event InventoryHandler onClose;
 
+
+
+    InputAction inventoryOpenAction;
+    InputAction inventoryCloseAction;
+    InputAction deleteAction;
+
+    PlayerControl control;
+
+    ItemInInventory selectedItem;
+
+
+    public int capacity { get; protected set; } = 15;
+
+    private void Awake() {
+        control = new PlayerControl();
+    }
+
+
+    void Start() {
+        inventoryOpenAction     = control.PlayerInput.Openinventory;
+        inventoryCloseAction    = control.InventoryInput.Closeinventory;
+        deleteAction            = control.InventoryInput.Delete;
+
+        inventoryOpenAction.performed   += open;
+        inventoryCloseAction.performed  += close;
+        deleteAction.performed          += deleteSelectedItem;
+
+        control.InventoryInput.Enable();
+        control.PlayerInput.Enable();
+        inventoryOpenAction.Enable();
+        inventoryCloseAction.Enable();
+        deleteAction.Enable();
+           
+        Debug.Log("Inventory start");
+    }
+
+
+
+    public bool setSelectedItem(ItemInInventory item) {
+        Debug.Log("Select selected item");
+        if (items.Contains(item)) {
+            if (selectedItem != null) selectedItem.selected = false;
+            if (item != null) item.selected = true;
+            selectedItem = item;
+            return true;
+        }
+        return false;
+    }
+
+    public void deleteItem(ItemInInventory item) {
+        items.Remove(item);
+        Debug.Log("HLEB = " + items.Count);
+        onChange.Invoke(items);
+    }
+    public void deleteSelectedItem(InputAction.CallbackContext context) {
+        Debug.Log("HLEB2: " + context);
+        deleteItem(selectedItem);
+    }
+    private void open(InputAction.CallbackContext context) {
+        Debug.Log("Open Inventory: " + context);
+        open();
+    }
+    public void open() {
+        if (onOpen != null) onOpen.Invoke(items);
+    }
+
+    private void close(InputAction.CallbackContext context) {
+        Debug.Log("Close Inventory: " + context);
+        if (onClose != null) onClose.Invoke(items);  
+    }
+    public void close() {
+        if (onClose != null) onClose.Invoke(items);
     }
 
     public object load(XElement xml) {
@@ -39,6 +113,5 @@ public class Inventory : MonoBehaviour, ISaveLoadable {
 
 
 
-    public delegate void InventoryHandler(List<ItemInInventory> list);
-    public event InventoryHandler onChange;
+
 }

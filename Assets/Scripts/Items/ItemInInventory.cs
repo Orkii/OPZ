@@ -4,7 +4,8 @@ using UnityEngine;
 public class ItemInInventory : ISaveLoadable {
     [field: SerializeField]
     public ItemInfo itemInfo { get; protected set; }
-
+    public int count;
+    public bool selected = false;
     
     
     
