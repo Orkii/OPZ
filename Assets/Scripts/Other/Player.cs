@@ -11,9 +11,11 @@ public class Player : Creature {
     private Rigidbody2D rb;
     [SerializeField]
     public float speed = 1;
-    public float maxSpeed = 1;
-    public float acceleration = 1;
-    public float deceleration = 1;
+    //public float maxSpeed = 1;
+    //public float acceleration = 1;
+    //public float deceleration = 1;
+    [SerializeField]
+    Equipped equipped;
     protected Inventory inventory;
 
     InputAction moveAction;
@@ -73,10 +75,10 @@ public class Player : Creature {
         rb.linearVelocity = moveV * speed;
     }
     protected void fire(InputAction.CallbackContext context) {
-        Debug.Log("shoot: " + context);
+        equipped.shoot();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Touch = " + collision.name);
+        Debug.Log("Enter " + collision.name);
         if (isItemInWorld(collision)) return;
     }
     protected bool isItemInWorld(Collider2D colider) {

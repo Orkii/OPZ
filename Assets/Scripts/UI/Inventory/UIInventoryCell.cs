@@ -20,18 +20,14 @@ public class UIInventoryCell : MonoBehaviour {
         image = GetComponent<Image>();
     }
     private void OnEnable() {
-        Debug.Log("OnEnable enter");
         draw();
     }
     public void setSprite(ItemInInventory item_) {
         item = item_;
         draw();
-        Debug.Log("setSprite");
-        Debug.Log("setSprite = " + item_);
     }
     public void removeSprite() {
         item = null;
-        Debug.Log("removeSprite");
         //if (enabled == false) return;
         if (itemImage != null) {
             itemImage.sprite = null;
@@ -44,7 +40,6 @@ public class UIInventoryCell : MonoBehaviour {
     }
     public void draw() {
         if (item == null) {
-            Debug.Log("Draw null");
             itemImage.sprite = null;
             itemImage.color = Color.clear;
             text.text = "";
@@ -64,11 +59,9 @@ public class UIInventoryCell : MonoBehaviour {
         }
     }
     void OnMouseDown() {
-        Debug.Log("I was clicked");
         onClick.Invoke(item);
     }
     public void click() {
-        Debug.Log("I was clicked");
         onClick.Invoke(item);
     }
 

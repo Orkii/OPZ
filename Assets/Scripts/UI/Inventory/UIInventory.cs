@@ -18,7 +18,6 @@ public class UIInventory : MonoBehaviour {
 
 
     protected void onCellClick(ItemInInventory item) {
-        Debug.Log("Someone was cliced");
         playerInventory.setSelectedItem(item);
         redrawItems();
     }
@@ -44,20 +43,14 @@ public class UIInventory : MonoBehaviour {
     }
 
     private void onInventoryChanged(List<ItemInInventory> list) {
-        Debug.Log("Inventory changed");
-        Debug.Log("list.Count = " + list.Count);
-
         drawItems(list);
     }
 
     private void drawItems(List<ItemInInventory> list) {
-        Debug.Log("Inventory changed");
-        Debug.Log("list.Count = " + list.Count);
         foreach (UIInventoryCell cell in cells) {
             cell.removeSprite();
         }
         for (int i = 0; i < list.Count; i++) {
-            Debug.Log("CELL = " + i);
             cells[i].removeSprite();
             cells[i].setSprite(list[i]);
             //cells[i].draw();

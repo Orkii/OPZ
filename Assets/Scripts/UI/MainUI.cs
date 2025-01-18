@@ -28,14 +28,12 @@ public class MainUI : MonoBehaviour {
 
 
     private void onInventoryOpen(List<ItemInInventory> list) {
-        Debug.Log("MAIN OPEN");
         controlElements.SetActive(false); // Error?
         UIinventory.open(list);
         //UIinventory.redrawItems();
         //UIinventoryField.SetActive(false);
     }
     private void onInventoryClose(List<ItemInInventory> list) {
-        Debug.Log("MAIN CLOSE");
         controlElements.SetActive(true); // Error?
         UIinventory.close(list);
         //UIinventoryField.SetActive(true);

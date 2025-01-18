@@ -17,7 +17,6 @@ public class ItemInWorld : MonoBehaviour, ISaveLoadable{
         if (xml != null) {
             itemInfo.load(xml.Element("itemInfo"));
         }
-        Debug.Log("Load: " + name);
         gameObject.name = itemInfo.itemName;
         Sprite spriteAsset = Resources.Load<Sprite>(itemInfo.itemIconPath);
         GetComponent<SpriteRenderer>().sprite = spriteAsset;
@@ -28,12 +27,12 @@ public class ItemInWorld : MonoBehaviour, ISaveLoadable{
         if (itemInfo = null) return null;
         XElement ret = new XElement("itemInWorld");
         ret.Add(itemInfo.save());
-        Debug.Log("ret2: " + ret.ToString());
+       
         return ret;
     }
 
     void Start() {
-        Debug.Log("Init:");
+       
         ((ISaveLoadable)this).initISaveLoadable();
         load(null);
 

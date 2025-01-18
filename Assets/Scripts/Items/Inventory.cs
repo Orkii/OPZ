@@ -45,14 +45,12 @@ public class Inventory : MonoBehaviour, ISaveLoadable {
         inventoryOpenAction.Enable();
         inventoryCloseAction.Enable();
         deleteAction.Enable();
-           
-        Debug.Log("Inventory start");
+
     }
 
 
 
     public bool setSelectedItem(ItemInInventory item) {
-        Debug.Log("Select selected item");
         if (items.Contains(item)) {
             if (selectedItem != null) selectedItem.selected = false;
             if (item != null) item.selected = true;
@@ -64,15 +62,12 @@ public class Inventory : MonoBehaviour, ISaveLoadable {
 
     public void deleteItem(ItemInInventory item) {
         items.Remove(item);
-        Debug.Log("HLEB = " + items.Count);
         onChange.Invoke(items);
     }
     public void deleteSelectedItem(InputAction.CallbackContext context) {
-        Debug.Log("HLEB2: " + context);
         deleteItem(selectedItem);
     }
     private void open(InputAction.CallbackContext context) {
-        Debug.Log("Open Inventory: " + context);
         open();
     }
     public void open() {
@@ -80,7 +75,6 @@ public class Inventory : MonoBehaviour, ISaveLoadable {
     }
 
     private void close(InputAction.CallbackContext context) {
-        Debug.Log("Close Inventory: " + context);
         if (onClose != null) onClose.Invoke(items);  
     }
     public void close() {
