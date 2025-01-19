@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ItemInInventory : ISaveLoadable {
     [field: SerializeField]
@@ -19,10 +20,26 @@ public class ItemInInventory : ISaveLoadable {
     }
 
     public object load(XElement xml) {
-        throw new System.NotImplementedException();
+        if (itemInfo == null) itemInfo = (ItemInfo)ScriptableObject.CreateInstance("ItemInfo");
+        if (xml == null) return this;
+        Debug.Log("itemInInventory load\n " + xml);
+        if (xml != null) {
+            itemInfo.load(xml.Element("itemInfo"));
+        }
+        Debug.Log("itemInInventory =" + xml);
+        count = int.Parse(xml.Element("count").Value);
+        return this;
     }
 
     public XElement save() {
-        throw new System.NotImplementedException();
+        Debug.Log("ItemInWorld Save");
+        if (itemInfo == null) {
+            Debug.Log("ItemInWorld itemInfo = null");
+            return null;
+        }
+        XElement ret = new XElement("itemInInventory");
+        ret.Add(itemInfo.save());
+        ret.Add(new XElement("count", count));
+        return ret;
     }
 }

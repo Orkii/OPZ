@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aaedaf130e4bf48b7cdb7086873a63, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  speed: 1
+  HP: 100
+  myName: Zombie
+  damage: 20
+  attackInterval: 1
+  canDrop:
+  - {fileID: 188438317964312496, guid: 2fc4b9c869e231a4bbc2392aafce0ea2, type: 3}
+  - {fileID: 6541011605926803917, guid: ae37d6fcec7a38143a4d67afe7448cd8, type: 3}

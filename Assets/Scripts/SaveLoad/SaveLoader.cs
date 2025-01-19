@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using Unity.VisualScripting;
@@ -14,8 +15,6 @@ public class SaveLoader {
 
     static List<ISaveLoadable> needToSaveLoad = new List<ISaveLoadable>();
 
-
-
     public static void save() {
         XElement root = new XElement("root");
         foreach (ISaveLoadable ob in needToSaveLoad) {
@@ -23,8 +22,8 @@ public class SaveLoader {
         }
         root.Save(path);
     }
-    public static void load() {
-
+    public static bool isAnySaves() {
+        return File.Exists(path);
     }
 
     public static void addToSave(ISaveLoadable el) {
@@ -35,4 +34,28 @@ public class SaveLoader {
     public static void removeFromSave(ISaveLoadable el) {
         needToSaveLoad.Remove(el);
     }
+
+
+
+    public static void deleteSave() {
+        File.Delete(path);
+    }
+
+    public static XElement load() {
+        if (!File.Exists(path)) return null;
+        StreamReader sr = new StreamReader(path);
+        XElement root = XElement.Load(sr);
+        return root;
+
+    }
+
+
+
+
+
+
+
+
+
+
 }

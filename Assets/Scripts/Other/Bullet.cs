@@ -22,13 +22,8 @@ public class Bullet : MonoBehaviour {
     void Update() {
         if (!shooted) return;
         if (new Vector2(
-                - transform.position.x + startPos.x,
-                - transform.position.y + startPos.y).magnitude>= fireRange) {
-            
-            Debug.Log("fireRange = " + fireRange);
-            Debug.Log("AAAAAAAAA = " + new Vector2(
-                transform.position.x - startPos.x,
-                transform.position.y - startPos.y).magnitude);
+                startPos.x - transform.position.x,
+                startPos.y - transform.position.y).magnitude>= fireRange) {
             Destroy(gameObject);
         }
         rb.linearVelocity = dir * speed;
@@ -50,8 +45,8 @@ public class Bullet : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Bullet Enter");
-        Debug.Log("Bullet Enter tag = " + collision.tag);
+        //Debug.Log("Bullet Enter");
+        //Debug.Log("Bullet Enter tag = " + collision.tag);
         if (collision.tag == "Enemy") {
             collision.GetComponent<Enemy>().doDamage(damage);
             Destroy(gameObject);

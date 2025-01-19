@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -75,28 +76,46 @@ public class Inventory : MonoBehaviour, ISaveLoadable {
     }
 
     private void close(InputAction.CallbackContext context) {
-        if (onClose != null) onClose.Invoke(items);  
+        if (onClose != null) onClose.Invoke(items);
+        foreach (ItemInInventory item in items) {
+            item.selected = false;
+        }
     }
     public void close() {
         if (onClose != null) onClose.Invoke(items);
     }
 
     public object load(XElement xml) {
-        throw new System.NotImplementedException();
+        Debug.Log("Invent = " + xml);
+        List<XElement> items_ = xml.Elements("item").ToList();
+        capacity = int.Parse(xml.Element("capacity").Value);
+        foreach (XElement ob in items_) {
+            ItemInInventory iii = new ItemInInventory();
+            iii.load(ob.Element("itemInInventory"));
+            items.Add(iii);
+        }
+        return this;
     }
     public XElement save() {
         XElement root = new XElement("inventory");
         foreach (ISaveLoadable ob in items) {
-            root.Add(ob.save());
+            root.Add(new XElement("item", ob.save()));
         }
+        root.Add(new XElement("capacity", capacity));
         return root;
     }
 
-    XElement ISaveLoadable.save() {
-        throw new System.NotImplementedException();
-    }
-
     public bool tryPutItem(ItemInWorld item) {
+        Debug.Log("item floor name = " + item.itemInfo.itemName);
+        foreach (ItemInInventory ob in items) {
+            Debug.Log("item inventory name = " + ob.itemInfo.itemName);
+            if (ob.itemInfo.itemName == item.itemInfo.itemName) {
+                ob.count++;
+                UnityEngine.Object.Destroy(item.gameObject);
+                return true;
+            }
+        }
+
         if (items.Count >= capacity) return false;
         items.Add(new ItemInInventory(item.itemInfo));
         if (onChange != null) onChange.Invoke(items);

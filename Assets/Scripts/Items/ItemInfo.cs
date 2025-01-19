@@ -1,5 +1,6 @@
 using NUnit.Framework.Constraints;
 using System.Xml.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -10,23 +11,24 @@ public class ItemInfo : ScriptableObject, ISaveLoadable {
 
     [SerializeField]
     public string itemName;
+    //[SerializeField]
+    //public string itemIconPath;
     [SerializeField]
-    public string itemIconPath;
-    [SerializeField]
-    protected Sprite image_;
+    public Sprite image;
 
-    public Sprite image
-    {
-        get { 
-            if (image_ == null) image_ = Resources.Load<Sprite>(itemIconPath);
-            return image_;
-        }
+    public string itemIconPath {
+        get { return AssetDatabase.GetAssetPath(image); }
+        set { image = AssetDatabase.LoadAssetAtPath<Sprite>(value); }
     }
 
+
     public object load(XElement xml) {
-        throw new System.NotImplementedException();
-
-
+        Debug.Log("ItemInfo enter\n" + xml);
+        XElement root = xml.Element("itemInfo");
+        Debug.Log("ItemInfo root\n" + root);
+        itemName = xml.Element("itemName").Value; 
+        itemIconPath = xml.Element("itemIconPath").Value;
+        return this;
     }
 
     public XElement save() {

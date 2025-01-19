@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Creature {   
+public class Player : Creature, ISaveLoadable {
     [SerializeField]
     Equipped equipped;
     protected Inventory inventory;
@@ -36,6 +36,8 @@ public class Player : Creature {
         playerControl.PlayerInput.Enable();
         inventory = GetComponent<Inventory>();
         collector.onEnter += OnCollectorEnter;
+
+        ((ISaveLoadable)this).initISaveLoadable();
     }
 
     override protected void Update() {
@@ -71,6 +73,26 @@ public class Player : Creature {
         return true;
     }
 
+    void OnDestroy() {
+        ((ISaveLoadable)this).destroyISaveLoadable();
+    }
+
+    public object load(XElement xml) {
+        Debug.Log("player load");
+        inventory = GetComponent<Inventory>();
+        inventory.load(xml.Element("inventory"));
+        transform.position = Utility.StringToVector3(xml.Element("position").Value);
+        HP = float.Parse(xml.Element("HP").Value);
+        return this;
+    }
+
+    public XElement save() {
+        XElement ret = new XElement("player");
+        ret.Add(new XElement("position", transform.position));
+        ret.Add(new XElement("HP", HP));
+        ret.Add(inventory.save());
+        return ret;
+    }
 }
 
 

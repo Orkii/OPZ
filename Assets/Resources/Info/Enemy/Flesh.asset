@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89aaedaf130e4bf48b7cdb7086873a63, type: 3}
   m_Name: Flesh
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   HP: 50
-  myName: Flash
+  myName: Flesh
   damage: 10
   attackInterval: 1
+  canDrop:
+  - {fileID: 188438317964312496, guid: 2fc4b9c869e231a4bbc2392aafce0ea2, type: 3}
+  - {fileID: 6541011605926803917, guid: ae37d6fcec7a38143a4d67afe7448cd8, type: 3}
