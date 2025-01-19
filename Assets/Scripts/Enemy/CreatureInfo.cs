@@ -11,9 +11,13 @@ public class CreatureInfo : ScriptableObject, ISaveLoadable {
     public float HP;
     [SerializeField]
     public string myName;
-    
-    
-    
+    [SerializeField]
+    public float damage;
+    [SerializeField]
+    public float attackInterval;
+
+
+
     public object load(XElement xml) {
         throw new System.NotImplementedException();
     }

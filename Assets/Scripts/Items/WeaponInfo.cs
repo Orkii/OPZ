@@ -1,15 +1,30 @@
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponInfoData", menuName = "custom/WeaponInfoData")]
 public class WeaponInfo : ItemInfo{
 
     [SerializeField]
-    string ammo;
+    public string ammo;
     [SerializeField]
-    float damage;
+    public float damage;
     [SerializeField]
-    float bulleTspeed;
+    public float bulleTspeed;
     [SerializeField]
-    float fireRange;
+    public float fireRange;
+    [SerializeField]
+    public GameObject bullet;
+    public string bulletPath {
+        get { return AssetDatabase.GetAssetPath(bullet); }
+        set { bullet = AssetDatabase.LoadAssetAtPath<GameObject>(value); }
+    }
+
+
+    private void Awake() {
+        bullet.GetComponent<Bullet>().init(this);
+    }
+
+
 
 }

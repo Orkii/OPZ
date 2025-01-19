@@ -3,15 +3,15 @@ using UnityEngine.U2D;
 using static Eyes;
 using static Inventory;
 
-public class Eye : MonoBehaviour {
+public class ExternCollider : MonoBehaviour {
     public event EyesHandler onEnter;
     public event EyesHandler onExit;
 
-    public CircleCollider2D circleCollider;
+    //public Collider2D collider;
 
 
     private void Start() {
-        if (circleCollider == null) circleCollider = GetComponent<CircleCollider2D>();
+        //if (collider == null) collider = GetComponent<Cllider2D>();
     }
 
 
@@ -21,11 +21,11 @@ public class Eye : MonoBehaviour {
         //Debug.Log("OnTriggerEnter2D");
         if (onEnter != null) {
             onEnter.Invoke(col);
-           // Debug.Log("OnTriggerEnter2D");
+            // Debug.Log("OnTriggerEnter2D");
         }
     }
     void OnTriggerExit2D(Collider2D col) {
-       // Debug.Log("OnTriggerEnter2D");
-        if (onExit!= null) onExit.Invoke(col);
+        // Debug.Log("OnTriggerEnter2D");
+        if (onExit != null) onExit.Invoke(col);
     }
 }

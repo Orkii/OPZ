@@ -15,8 +15,7 @@ public class ItemInfo : ScriptableObject, ISaveLoadable {
     [SerializeField]
     protected Sprite image_;
 
-
-    public Sprite image   // property
+    public Sprite image
     {
         get { 
             if (image_ == null) image_ = Resources.Load<Sprite>(itemIconPath);

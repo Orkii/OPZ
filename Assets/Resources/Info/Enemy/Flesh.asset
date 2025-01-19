@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89aaedaf130e4bf48b7cdb7086873a63, type: 3}
   m_Name: Flesh
   m_EditorClassIdentifier: 
+  speed: 1
   HP: 50
   myName: Flash
+  damage: 10
+  attackInterval: 1

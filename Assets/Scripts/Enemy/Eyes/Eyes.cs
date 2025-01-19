@@ -22,11 +22,11 @@ public class Eyes : MonoBehaviour {
     }
 
     protected void onSee_(Collider2D col) {
-        Debug.Log("onSee_");
+        //Debug.Log("onSee_");
         onSee.Invoke(col);
     }
     protected void onUnSee_(Collider2D col) {
-        Debug.Log("onUnSee_");
+        //Debug.Log("onUnSee_");
         onUnSee.Invoke(col);
     }
 

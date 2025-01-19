@@ -16,21 +16,21 @@ public class Destractable : MonoBehaviour {
     public event EventHandler onBeforeDie;
     public event EventHandler onAfterDie;
 
-    void Start() {
+    virtual protected void Start() {
         
     }
 
-    void Update() {
+    virtual protected void Update() {
         
     }
 
     public void doDamage(float damage) {
         HP -= damage;
-        if (damage <= 0) {
+        if (HP <= 0) {
             EventArgs args = new OnDieEventArgs(HP.ToString());
-            onBeforeDie.Invoke(this, args);
+            if (onBeforeDie != null) onBeforeDie.Invoke(this, args);
             die();
-            onAfterDie.Invoke(this, args);
+            //if (onAfterDie != null) onAfterDie.Invoke(this, args);
         }
     }
     protected void die() {

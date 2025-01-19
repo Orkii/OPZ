@@ -1,12 +1,16 @@
 using UnityEngine;
 
 public class Creature : Destractable {
-    void Start() {
-        
+
+    protected Rigidbody2D rb;
+    [SerializeField]
+    protected float speed;
+    override protected void Start() {
+        base.Start();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        
+    override protected void Update() {
+        base.Update();
     }
 }
